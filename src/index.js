@@ -15,7 +15,7 @@ const styles = {
 };
 
 const App = () => (
-  <div>
+  <div style={styles}>
     <Header />
     <div class="has-background-black-ter">
       <div class="columns is-mobile">
