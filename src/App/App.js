@@ -7,6 +7,7 @@ import Home from "../Home/Home";
 import WishList from "../WishList/WishList";
 import Products from "../Products/Products";
 import Pdp from "../Pdp/Pdp.js";
+import Login from "../Login/Login";
 import { LoginContext } from "../Context/LoginContext";
 
 const styles = {
@@ -14,37 +15,65 @@ const styles = {
   textAlign: "center"
 };
 
-export default () => (
-  <LoginContext.Provider value={false}>
-    <div style={styles}>
-      <Header />
-      <div class="has-background-black-ter">
-        <div class="columns is-mobile">
-          <div class="column ">
-            <Link class="button is-white is-outlined is-medium" to="/">
-              Home
-            </Link>
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticated: false
+    };
+    this.handleAuthentication = this.handleAuthentication.bind(this);
+  }
+  handleAuthentication() {
+    this.setState(prevState => {
+      return {
+        isAuthenticated: !prevState.isAuthenticated
+      };
+    });
+  }
+  render() {
+    return (
+      <LoginContext.Provider value={this.state}>
+        <div style={styles}>
+          <Header />
+          <div class="has-background-black-ter">
+            <div class="columns is-mobile">
+              <div class="column ">
+                <Link class="button is-white is-outlined is-medium" to="/">
+                  Home
+                </Link>
+              </div>
+              <div class="column ">
+                <Link
+                  class="button is-white is-outlined is-medium"
+                  to="/products"
+                >
+                  Products
+                </Link>
+              </div>
+              <div class="column ">
+                <Link
+                  class="button is-white is-outlined is-medium"
+                  to="/wishlist"
+                >
+                  Wishlist
+                </Link>
+              </div>
+            </div>
+            <Login
+              isAuthenticated={this.state.isAuthenticated}
+              authCb={this.handleAuthentication}
+            />
+            <hr />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/wishlist" component={WishList} />
+              <Route exact path="/products" component={Products} />
+              <Route exact path="/pdp/:id" component={Pdp} />
+            </Switch>
           </div>
-          <div class="column ">
-            <Link class="button is-white is-outlined is-medium" to="/products">
-              Products
-            </Link>
-          </div>
-          <div class="column ">
-            <Link class="button is-white is-outlined is-medium" to="/wishlist">
-              Wishlist
-            </Link>
-          </div>
+          <Footer />
         </div>
-        <hr />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/wishlist" component={WishList} />
-          <Route exact path="/products" component={Products} />
-          <Route exact path="/pdp/:id" component={Pdp} />
-        </Switch>
-      </div>
-      <Footer />
-    </div>
-  </LoginContext.Provider>
-);
+      </LoginContext.Provider>
+    );
+  }
+}

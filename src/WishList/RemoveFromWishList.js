@@ -1,4 +1,5 @@
 import React from "react";
+import { LoginContext } from "../Context/LoginContext";
 
 export default class RemoveFromWishList extends React.Component {
   constructor(props) {
@@ -10,9 +11,15 @@ export default class RemoveFromWishList extends React.Component {
   }
   render() {
     return (
-      <div>
-        <button onClick={this.handleClick}>Remove From Wishlist</button>
-      </div>
+      <LoginContext.Consumer>
+        {context =>
+          context.isAuthenticated && (
+            <div>
+              <button onClick={this.handleClick}>Remove From Wishlist</button>
+            </div>
+          )
+        }
+      </LoginContext.Consumer>
     );
   }
 }

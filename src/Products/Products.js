@@ -1,6 +1,6 @@
 import React from "react";
 import products from "../MockData/mock_products";
-import { Link } from "react-router-dom";
+import ShowProducts from "./ShowProducts";
 
 export default class Products extends React.Component {
   constructor(props) {
@@ -62,22 +62,7 @@ export default class Products extends React.Component {
             </button>
           </div>
         </div>
-        <ul class="menu-list">
-          {this.state.productList.map(product => (
-            <li class="has-background-grey-lighter" key={product.id}>
-              <Link to={`/pdp/${product.id}`}>
-                <div>
-                  <span class="tag is-info"> Name: </span>
-                  <span class="tag is-light">{product.name.toUpperCase()}</span>
-                </div>
-                <div>
-                  <span class="tag is-info"> Price:</span>
-                  <span class="tag is-light">{product.price} $</span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ShowProducts products={this.state.productList} />
       </div>
     );
   }
