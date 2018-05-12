@@ -1,6 +1,7 @@
 import React from "react";
 import products from "../MockData/mock_products";
 import { Link } from "react-router-dom";
+import { LoginContext } from "../Context/LoginContext";
 
 export default class Pdp extends React.Component {
   constructor(props) {
@@ -50,7 +51,17 @@ export default class Pdp extends React.Component {
             </div>
             <div>
               <span class="tag is-info">Price: </span>
-              <span class="tag is-light"> {this.productData.price} $</span>
+              <LoginContext.Consumer>
+                {context =>
+                  context.isAuthenticated ? (
+                    <span class="tag is-light">
+                      {this.productData.discountedPrice} $
+                    </span>
+                  ) : (
+                    <span class="tag is-light">{this.productData.price} $</span>
+                  )
+                }
+              </LoginContext.Consumer>
             </div>
             <div>
               <span class="tag is-info">Is Available: </span>
