@@ -8,12 +8,7 @@ export default class Pdp extends React.Component {
     this.state = {
       itemCount: 1
     };
-    const pId = this.props.match.params.id;
-    this.productData = () => {
-      return products.filter(product => {
-        return product.id === Number(pId);
-      });
-    };
+    this.productData = this.props.location.state.productData;
     this.handleItemIncrement = this.handleItemIncrement.bind(this);
     this.handleItemDecrement = this.handleItemDecrement.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -50,31 +45,30 @@ export default class Pdp extends React.Component {
             <div>
               <span class="tag is-info ">Name: </span>
               <span class="tag is-light">
-                {this.productData()[0].name.toUpperCase()}
+                {this.productData.name.toUpperCase()}
               </span>
             </div>
             <div>
               <span class="tag is-info">Price: </span>
-              <span class="tag is-light"> {this.productData()[0].price} $</span>
+              <span class="tag is-light"> {this.productData.price} $</span>
             </div>
             <div>
               <span class="tag is-info">Is Available: </span>
               <span class="tag is-light">
-                {this.productData()[0].itemsInStock > 0 ? "YES" : "NO"}
+                {this.productData.itemsInStock > 0 ? "YES" : "NO"}
               </span>
             </div>
             <br />
 
             <div>
-              {this.productData()[0].itemsInStock > 0 && (
+              {this.productData.itemsInStock > 0 && (
                 <div>
                   <div>
                     <button
                       class="button is-dark is-small"
                       onClick={this.handleItemIncrement}
                       disabled={
-                        this.state.itemCount >=
-                        this.productData()[0].itemsInStock
+                        this.state.itemCount >= this.productData.itemsInStock
                       }
                     >
                       +

@@ -7,7 +7,12 @@ export default ({ products }) => {
     <ul class="menu-list">
       {products.map(product => (
         <li class="has-background-grey-lighter" key={product.id}>
-          <Link to={`/pdp/${product.id}`}>
+          <Link
+            to={{
+              pathname: `/pdp/${product.id}`,
+              state: { productData: product }
+            }}
+          >
             <div>
               <span class="tag is-info"> Name: </span>
               <span class="tag is-light">{product.name.toUpperCase()}</span>
