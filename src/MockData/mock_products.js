@@ -15,7 +15,7 @@ export default [
   },
   {
     id: 3,
-    name: "handcuffs",
+    name: "toy-scooter",
     price: 70,
     discountedPrice: 55,
     itemsInStock: 5
