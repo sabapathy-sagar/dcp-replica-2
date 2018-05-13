@@ -19,5 +19,19 @@ export default [
     price: 70,
     discountedPrice: 55,
     itemsInStock: 5
+  },
+  {
+    id: 4,
+    name: "toy-phone",
+    price: 37,
+    discountedPrice: 14,
+    itemsInStock: 5
+  },
+  {
+    id: 5,
+    name: "key-chains",
+    price: 45,
+    discountedPrice: 30,
+    itemsInStock: 5
   }
 ];
