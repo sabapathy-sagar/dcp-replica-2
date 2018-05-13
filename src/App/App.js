@@ -9,13 +9,14 @@ import Products from "../Products/Products";
 import Pdp from "../Pdp/Pdp.js";
 import Login from "../Login/Login";
 import { LoginContext } from "../Context/LoginContext";
+import withStorage from "../Helper/withStorage";
 
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center"
 };
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +24,17 @@ export default class App extends React.Component {
     };
     this.handleAuthentication = this.handleAuthentication.bind(this);
   }
+  componentDidMount() {
+    const isAuthenticated = JSON.parse(this.props.load("isAuthenticated"));
+    if (isAuthenticated) {
+      this.setState({
+        isAuthenticated
+      });
+    }
+  }
   handleAuthentication() {
     this.setState(prevState => {
+      this.props.save("isAuthenticated", !prevState.isAuthenticated);
       return {
         isAuthenticated: !prevState.isAuthenticated
       };
@@ -77,3 +87,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+const WrappedComponent = withStorage(App);
+
+export default WrappedComponent;
