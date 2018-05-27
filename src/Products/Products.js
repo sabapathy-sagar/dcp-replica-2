@@ -22,7 +22,7 @@ export default class Products extends React.Component {
     });
   }
   priceSort() {
-    const sortedByPriceProducts = products.sort(function(a, b) {
+    const sortedByPriceProducts = this.state.productList.sort(function(a, b) {
       return a.price - b.price;
     });
     this.setState({
@@ -39,7 +39,7 @@ export default class Products extends React.Component {
     });
   }
   nameSort() {
-    const sortedByNameProducts = products.sort(function(a, b) {
+    const sortedByNameProducts = this.state.productList.sort(function(a, b) {
       var nameA = a.name.toUpperCase(); // ignore upper and lowercase
       var nameB = b.name.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
