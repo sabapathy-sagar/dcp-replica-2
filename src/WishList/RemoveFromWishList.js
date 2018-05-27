@@ -4,10 +4,6 @@ import { LoginContext } from "../Context/LoginContext";
 export default class RemoveFromWishList extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    this.props.onButtonClick();
   }
   render() {
     return (
@@ -15,7 +11,7 @@ export default class RemoveFromWishList extends React.Component {
         {context =>
           context.isAuthenticated && (
             <div>
-              <button onClick={this.handleClick}>Remove From Wishlist</button>
+              <button>Remove From Wishlist</button>
             </div>
           )
         }
