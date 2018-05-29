@@ -25,6 +25,7 @@ class App extends React.Component {
       productsInWishlist: []
     };
     this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.updateWishlist = this.updateWishlist.bind(this);
   }
   componentDidMount() {
     const isAuthenticated = JSON.parse(this.props.load("isAuthenticated"));
@@ -42,10 +43,22 @@ class App extends React.Component {
       };
     });
   }
+  updateWishlist(product) {
+    if (!this.state.productsInWishlist.includes(product)) {
+      this.setState(prevState => ({
+        productsInWishlist: prevState.productsInWishlist.concat(product)
+      }));
+    }
+  }
   render() {
     return (
       <LoginContext.Provider value={this.state}>
-        <WishListContext.Provider value={this.state}>
+        <WishListContext.Provider
+          value={{
+            ...this.state,
+            updateWishlist: this.updateWishlist
+          }}
+        >
           <div style={styles}>
             <Header />
             <div class="has-background-black-ter">
