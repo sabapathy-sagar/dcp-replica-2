@@ -29,11 +29,30 @@ class App extends React.Component {
   }
   componentDidMount() {
     const isAuthenticated = JSON.parse(this.props.load("isAuthenticated"));
-    if (isAuthenticated) {
+    const wishListProducts = JSON.parse(this.props.load("wishListProducts"));
+
+    const setAuthenticationState = () => {
+      if (isAuthenticated) {
+        this.setState({
+          isAuthenticated
+        });
+      }
+    };
+    const setWishlistState = () => {
       this.setState({
-        isAuthenticated
+        productsInWishlist: wishListProducts
       });
-    }
+    };
+
+    setAuthenticationState();
+    setWishlistState();
+  }
+  componentDidUpdate() {
+    console.log("--componentDidUpdate---");
+    this.props.save(
+      "wishListProducts",
+      JSON.stringify(this.state.productsInWishlist)
+    );
   }
   handleAuthentication() {
     this.setState(prevState => {
