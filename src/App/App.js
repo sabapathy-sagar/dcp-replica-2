@@ -63,17 +63,19 @@ class App extends React.Component {
   }
 
   updateWishlist(product) {
-    const isInWishlistStorage = JSON.parse(
-      this.props.load("wishListProducts")
-    ).includes(product);
-    if (
-      !this.state.productsInWishlist.includes(product) &&
-      !isInWishlistStorage
-    ) {
-      this.setState(prevState => ({
+    const cb = () => {
+      this.props.save(
+        "wishListProducts",
+        JSON.stringify(this.state.productsInWishlist)
+      );
+    };
+
+    this.setState(
+      prevState => ({
         productsInWishlist: prevState.productsInWishlist.concat(product)
-      }));
-    }
+      }),
+      cb()
+    );
   }
   render() {
     return (

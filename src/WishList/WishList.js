@@ -11,11 +11,20 @@ export default class WishList extends React.Component {
 
   render() {
     return (
-      <div>
-        <LoginAds text="Log on to access more features" />
-        <WishListCount />
-        <RemoveFromWishList />
-      </div>
+      <WishListContext.Consumer>
+        {context => (
+          <div>
+            <LoginAds text="Log on to access more features" />
+            <WishListCount />
+            <div>
+              {context.productsInWishlist.map(product => (
+                <div>{product.name}</div>
+              ))}
+            </div>
+            <RemoveFromWishList />
+          </div>
+        )}
+      </WishListContext.Consumer>
     );
   }
 }
