@@ -63,19 +63,9 @@ class App extends React.Component {
   }
 
   updateWishlist(product) {
-    const cb = () => {
-      this.props.save(
-        "wishListProducts",
-        JSON.stringify(this.state.productsInWishlist)
-      );
-    };
-
-    this.setState(
-      prevState => ({
-        productsInWishlist: prevState.productsInWishlist.concat(product)
-      }),
-      cb()
-    );
+    this.setState(prevState => ({
+      productsInWishlist: prevState.productsInWishlist.concat(product)
+    }));
   }
   render() {
     return (
