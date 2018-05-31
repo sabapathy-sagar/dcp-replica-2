@@ -1,6 +1,6 @@
 import React from "react";
 import { WishListContext } from "../Context/WishListContext";
-import RemoveFromWishList from "./RemoveFromWishList";
+import ClearWishList from "./ClearWishList";
 import LoginAds from "../Login/LoginAds";
 import WishListCount from "./WishListCount";
 
@@ -21,7 +21,7 @@ export default class WishList extends React.Component {
                 <div>{product.name}</div>
               ))}
             </div>
-            <RemoveFromWishList />
+            <ClearWishList />
           </div>
         )}
       </WishListContext.Consumer>
