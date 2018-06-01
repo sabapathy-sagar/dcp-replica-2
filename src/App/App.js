@@ -40,9 +40,16 @@ class App extends React.Component {
       }
     };
     const setWishlistState = () => {
-      this.setState({
-        productsInWishlist: wishListProducts
-      });
+      //check if wishListProducts key exists in local storage, if not then set it to an empty array
+      if (this.props.load("wishListProducts") !== null) {
+        this.setState({
+          productsInWishlist: wishListProducts
+        });
+      } else {
+        this.setState({
+          productsInWishlist: []
+        });
+      }
     };
 
     setAuthenticationState();
@@ -74,6 +81,7 @@ class App extends React.Component {
       productsInWishlist: []
     });
   }
+
   render() {
     return (
       <LoginContext.Provider value={this.state}>
