@@ -4,7 +4,7 @@ import { WishListContext } from "../Context/WishListContext";
 export default () => {
   return (
     <WishListContext.Consumer>
-      {context => <p>In Wishlist: {context.productsInWishlist.length}</p>}
+      {context => <div>{context.productsInWishlist.length}</div>}
     </WishListContext.Consumer>
   );
 };

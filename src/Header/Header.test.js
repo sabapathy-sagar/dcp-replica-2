@@ -4,6 +4,6 @@ import Header from "./Header.js";
 
 const wrapper = shallow(<Header />);
 
-test("should have WishListCount component", () => {
-  expect(wrapper.find("WishListCount").length).toBe(1);
+test("should have one h2 tag", () => {
+  expect(wrapper.find("h2").length).toBe(1);
 });

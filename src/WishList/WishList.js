@@ -15,7 +15,6 @@ export default class WishList extends React.Component {
         {context => (
           <div>
             <LoginAds text="Log on to access more features" />
-            <WishListCount />
             <div>
               {context.productsInWishlist.map(product => (
                 <div>{product.name}</div>
@@ -28,3 +27,5 @@ export default class WishList extends React.Component {
     );
   }
 }
+
+//            <WishListCount />

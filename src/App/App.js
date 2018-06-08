@@ -51,6 +51,7 @@ class App extends React.Component {
         });
       }
     };
+    console.log("state", this.state.productsInWishlist.length);
 
     setAuthenticationState();
     setWishlistState();
